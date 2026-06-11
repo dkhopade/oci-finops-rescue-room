@@ -1,0 +1,9 @@
+<svg width="240" height="84" viewBox="0 0 240 84" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Beta Health logo</title>
+  <rect width="240" height="84" rx="14" fill="#ffffff"/>
+  <rect x="12" y="12" width="60" height="60" rx="12" fill="#be123c"/>
+  <path d="M38 25H46V38H59V46H46V59H38V46H25V38H38V25Z" fill="#ffffff"/>
+  <path d="M91 29H108C114 29 118 32 118 37C118 40 116 43 113 44C117 45 120 48 120 52C120 58 115 61 108 61H91V29ZM101 42H106C108 42 109 41 109 39C109 37 108 36 106 36H101V42ZM101 54H107C109 54 111 53 111 51C111 49 109 48 107 48H101V54Z" fill="#111827"/>
+  <path d="M126 29H151V37H136V41H150V48H136V53H152V61H126V29Z" fill="#111827"/>
+  <text x="91" y="72" fill="#475569" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2">BETA HEALTH</text>
+</svg>

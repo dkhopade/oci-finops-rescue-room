@@ -1,0 +1,10 @@
+<svg width="240" height="84" viewBox="0 0 240 84" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Acme Retail logo</title>
+  <rect width="240" height="84" rx="14" fill="#ffffff"/>
+  <rect x="12" y="12" width="60" height="60" rx="12" fill="#0f766e"/>
+  <path d="M27 55L42 25L57 55H49L46.5 49H37.5L35 55H27ZM40 42H44L42 36L40 42Z" fill="#ffffff"/>
+  <path d="M91 30H116V38H101V42H115V49H101V55H91V30Z" fill="#111827"/>
+  <path d="M121 30H132L142 45V30H151V55H140L130 40V55H121V30Z" fill="#111827"/>
+  <path d="M158 30H181V37H168V39.5H180V46H168V48H182V55H158V30Z" fill="#111827"/>
+  <text x="91" y="70" fill="#475569" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2">ACME RETAIL</text>
+</svg>

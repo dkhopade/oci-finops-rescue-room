@@ -1,0 +1,4 @@
+name,account_type,industry,region,segment,account_owner,solution_engineer,customer_success_manager,renewal_date,annual_contract_value
+Acme Retail,existing,Retail,North America,Enterprise,Avery Chen,Sam Patel,Jordan Lee,2026-09-22,850000
+Beta Health,existing,Healthcare,North America,Enterprise,Morgan Smith,Riley Garcia,Taylor Kim,2026-08-23,620000
+Nova Logistics,greenfield,Logistics,EMEA,Mid-Market,Casey Nguyen,Dev Singh,,,

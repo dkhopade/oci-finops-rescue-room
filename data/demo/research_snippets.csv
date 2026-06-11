@@ -1,0 +1,4 @@
+account_name,source_name,source_url,snippet_date,snippet_type,body
+Nova Logistics,Public hiring page,https://example.com/jobs,2026-05-20,Hiring,Nova Logistics is hiring data engineers and platform engineers to support analytics modernization.
+Nova Logistics,Company news,https://example.com/news,2026-05-15,News,Nova Logistics announced regional expansion and investment in route optimization capabilities.
+Nova Logistics,Public job post,https://example.com/cloud-role,2026-05-26,Hiring,Role mentions Kubernetes cloud migration and scalable data platform experience.
