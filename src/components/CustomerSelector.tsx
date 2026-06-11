@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { formatCurrency } from "@/lib/analyzeFinops";
 import type { DemoCustomer } from "@/lib/types";
 
@@ -13,11 +14,15 @@ type CustomerSelectorProps = {
 
 function CloudSignalVisual({
   customerName,
+  logoUrl,
+  logoAlt,
   totalSpend,
   totalSavings,
   findings,
 }: {
   customerName: string;
+  logoUrl?: string;
+  logoAlt?: string;
   totalSpend: number;
   totalSavings: number;
   findings: number;
@@ -52,6 +57,29 @@ function CloudSignalVisual({
             <div className="absolute bottom-10 right-16 h-2 w-2 rounded-sm bg-amber-300" />
             <div className="absolute bottom-16 left-8 h-2 w-2 rounded-sm bg-red-400" />
             <div className="absolute inset-x-8 bottom-8 h-px bg-gradient-to-r from-transparent via-sky-300/60 to-transparent" />
+            <div className="absolute inset-0 grid place-items-center p-6">
+              {loaded && logoUrl ? (
+                <div className="rounded-xl border border-white/80 bg-white/95 p-3 shadow-lg">
+                  <Image
+                    src={logoUrl}
+                    alt={logoAlt ?? `${customerName} logo`}
+                    width={220}
+                    height={77}
+                    className="h-auto w-44"
+                    unoptimized
+                  />
+                </div>
+              ) : (
+                <div className="rounded-xl border border-slate-200 bg-white/90 px-5 py-4 text-center shadow-sm">
+                  <p className="text-xs font-semibold uppercase text-slate-500">
+                    Customer logo
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-slate-950">
+                    Loads with demo
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="grid gap-3">
@@ -107,6 +135,8 @@ export function CustomerSelector({
     <div className="grid gap-5">
       <CloudSignalVisual
         customerName={selectedCustomer?.name ?? "No customer loaded"}
+        logoUrl={selectedCustomer?.logoUrl}
+        logoAlt={selectedCustomer?.logoAlt}
         totalSpend={totalMonthlySpend}
         totalSavings={estimatedMonthlySavings}
         findings={findingsCount}
@@ -141,17 +171,31 @@ export function CustomerSelector({
               }`}
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <p className="font-semibold">{customer.name}</p>
-                  <p
-                    className={`mt-1 text-sm ${
-                      selectedCustomerId === customer.id
-                        ? "text-slate-600"
-                        : "text-slate-500"
-                    }`}
-                  >
-                    {customer.industry}
-                  </p>
+                <div className="flex min-w-0 items-center gap-3">
+                  {customer.logoUrl ? (
+                    <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-lg border border-slate-200 bg-white p-1 shadow-sm">
+                      <Image
+                        src={customer.logoUrl}
+                        alt={customer.logoAlt ?? `${customer.name} logo`}
+                        width={80}
+                        height={28}
+                        className="h-auto w-full"
+                        unoptimized
+                      />
+                    </span>
+                  ) : null}
+                  <div className="min-w-0">
+                    <p className="font-semibold">{customer.name}</p>
+                    <p
+                      className={`mt-1 text-sm ${
+                        selectedCustomerId === customer.id
+                          ? "text-slate-600"
+                          : "text-slate-500"
+                      }`}
+                    >
+                      {customer.industry}
+                    </p>
+                  </div>
                 </div>
                 <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600">
                   {formatCurrency(

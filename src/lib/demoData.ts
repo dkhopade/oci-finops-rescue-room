@@ -4,6 +4,8 @@ export const demoCustomers: DemoCustomer[] = [
   {
     id: "retailco-expansion",
     name: "RetailCo Expansion",
+    logoUrl: "/logos/retailco-expansion.svg",
+    logoAlt: "RetailCo Expansion logo",
     industry: "Retail and ecommerce",
     accountTeam: "Commercial IaaS West",
     executiveConcern:
@@ -206,6 +208,8 @@ export const demoCustomers: DemoCustomer[] = [
   {
     id: "healthsys-modernization",
     name: "HealthSys Modernization",
+    logoUrl: "/logos/healthsys-modernization.svg",
+    logoAlt: "HealthSys Modernization logo",
     industry: "Healthcare provider network",
     accountTeam: "Strategic Healthcare IaaS",
     executiveConcern:
@@ -408,6 +412,8 @@ export const demoCustomers: DemoCustomer[] = [
   {
     id: "finserv-non-prod-sprawl",
     name: "FinServ Non-Prod Sprawl",
+    logoUrl: "/logos/finserv-non-prod-sprawl.svg",
+    logoAlt: "FinServ Non-Prod Sprawl logo",
     industry: "Financial services",
     accountTeam: "Strategic Financial Services",
     executiveConcern:

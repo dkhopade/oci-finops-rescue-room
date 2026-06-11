@@ -28,6 +28,8 @@ export type OciResource = {
 export type DemoCustomer = {
   id: string;
   name: string;
+  logoUrl?: string;
+  logoAlt?: string;
   industry: string;
   accountTeam: string;
   executiveConcern: string;
