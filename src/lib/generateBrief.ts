@@ -64,7 +64,7 @@ export function makeExecutiveBrief(
     )
     .join("\n");
 
-  return `# OCI FinOps Rescue Room Brief: ${customer.name}
+  return `# OrbitIQ Brief: ${customer.name}
 
 ${customer.name} has an estimated ${formatCurrency(totalSpend)} in monthly OCI run rate across the sampled resources. The rule-based review identified ${recommendations.length} optimization findings, including ${highSeverity} high-severity items, with an estimated savings opportunity of ${formatCurrency(totalSavings)} per month (${formatPercent(savingsPct)} of sampled spend). The strongest near-term path is to combine quick storage cleanup, non-production controls, and targeted compute right-sizing while preserving migration and modernization momentum.
 

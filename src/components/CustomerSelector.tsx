@@ -12,7 +12,7 @@ type CustomerSelectorProps = {
   onSelectCustomer: (customerId: string) => void;
 };
 
-function CloudSignalVisual({
+function OrbitIQVisual({
   customerName,
   logoUrl,
   logoAlt,
@@ -133,7 +133,7 @@ export function CustomerSelector({
 }: CustomerSelectorProps) {
   return (
     <div className="grid gap-5">
-      <CloudSignalVisual
+      <OrbitIQVisual
         customerName={selectedCustomer?.name ?? "No customer loaded"}
         logoUrl={selectedCustomer?.logoUrl}
         logoAlt={selectedCustomer?.logoAlt}

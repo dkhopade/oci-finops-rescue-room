@@ -90,7 +90,7 @@ function ExecutiveBriefArtifact({
             Opening summary
           </h4>
           <p className="mt-3 text-sm leading-6 text-slate-700">
-            {customer.name} can pursue a focused 30-day OCI FinOps sprint that
+            {customer.name} can pursue a focused 30-day OrbitIQ action plan that
             targets {formatCurrency(totalSavings)} in estimated monthly savings
             while improving ownership, cost attribution, and exposure review
             discipline.
