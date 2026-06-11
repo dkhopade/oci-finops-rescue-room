@@ -1,6 +1,6 @@
 # OrbitIQ
 
-OrbitIQ turns cloud consumption, customer health, and market research signals into prioritized account-growth actions.
+OrbitIQ turns cloud consumption, customer health, and market research signals into prioritized account-growth actions. 
 
 The MVP is built as a deterministic investor demo. It does not connect to real billing, CRM, support, Slack, Jira, Teams, or email systems. Every generated artifact is an editable draft or demo-mode created record.
 
