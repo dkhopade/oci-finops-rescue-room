@@ -4,6 +4,11 @@
 
 OCI FinOps Rescue Room turns rough OCI resource and cost signals into an executive-ready cost optimization plan in under 60 seconds.
 
+## Demo URL
+
+- Demo URL: [https://oci-finops-rescue-room.vercel.app/](https://oci-finops-rescue-room.vercel.app/)
+- GitHub Repo: [dkhopade/oci-finops-rescue-room](https://github.com/dkhopade/oci-finops-rescue-room)
+
 ## Problem Statement
 
 OCI account teams often discover cost optimization signals during planning or discovery calls: idle compute, unattached storage, missing lifecycle policies, non-production sprawl, missing cost center tags, and public exposure risk. Those signals are valuable, but they are usually scattered across notes, exports, and technical conversations instead of packaged into a clear business action plan.
