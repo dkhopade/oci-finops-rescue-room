@@ -9,6 +9,7 @@ import {
   defaultThresholds,
   demoConnectors,
   demoAccounts,
+  demoImpactMetrics,
   demoToday,
   formatCompactCurrency,
   formatCurrency,
@@ -17,8 +18,10 @@ import {
   getAllSignals,
   getSourceNames,
   initialWorkflowEvents,
+  readinessProof,
   rubricProofPoints,
   statusDescriptions,
+  wedgeProof,
   weightedPriorityScore,
 } from "@/lib/orbitiq";
 import type {
@@ -205,6 +208,195 @@ function SummaryCard({
   );
 }
 
+function ImpactMetricStrip() {
+  return (
+    <section className="rounded-lg border border-zinc-200 bg-white p-4">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase text-zinc-500">
+            Impact model
+          </p>
+          <h2 className="mt-1 text-lg font-semibold text-zinc-950">
+            Small wedge, measurable account-team lift
+          </h2>
+        </div>
+        <Pill tone="green">Judge metric ready</Pill>
+      </div>
+      <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        {demoImpactMetrics.map((metric) => (
+          <div
+            key={metric.label}
+            className="rounded-lg border border-zinc-200 bg-zinc-50 p-3"
+          >
+            <p className="text-xs font-semibold uppercase text-zinc-500">
+              {metric.label}
+            </p>
+            <p className="mt-2 text-xl font-semibold text-zinc-950">
+              {metric.value}
+            </p>
+            <p className="mt-1 text-sm leading-5 text-zinc-600">
+              {metric.detail}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function WedgeProofPanel() {
+  return (
+    <section className="rounded-lg border border-zinc-200 bg-white p-5">
+      <p className="text-xs font-semibold uppercase text-zinc-500">
+        Wedge and expansion
+      </p>
+      <h2 className="mt-2 text-xl font-semibold text-zinc-950">
+        Start with the daily sales and pre-sales action queue
+      </h2>
+      <div className="mt-4 grid gap-4 md:grid-cols-3">
+        {wedgeProof.map((item) => (
+          <div key={item.label} className="border-l-2 border-zinc-300 pl-3">
+            <p className="font-semibold text-zinc-950">{item.label}</p>
+            <p className="mt-2 text-sm leading-5 text-zinc-600">
+              {item.detail}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function AccountWorkflowPanel({
+  account,
+  status,
+  activeAction,
+}: {
+  account: OrbitAccount;
+  status: FeedbackStatus;
+  activeAction?: GeneratedAction;
+}) {
+  const workflow = [
+    {
+      label: "Signal triaged",
+      detail: `${account.signals.length} source-backed signals scored into priority ${account.priorityScore}.`,
+      active: true,
+    },
+    {
+      label: "Human decision",
+      detail:
+        status === "New"
+          ? "Pending account-team decision."
+          : statusDescriptions[status],
+      active: status !== "New",
+    },
+    {
+      label: "Draft prepared",
+      detail: activeAction
+        ? `${actionTypeLabels[activeAction.type]} is ${activeAction.status.toLowerCase()}.`
+        : "Ready to prepare from the current evidence set.",
+      active: Boolean(activeAction),
+    },
+    {
+      label: "Downstream handoff",
+      detail:
+        activeAction?.status === "Created"
+          ? "Created in demo mode with no external write."
+          : "Approval-gated CRM, Jira, Slack, or email handoff.",
+      active: activeAction?.status === "Created",
+    },
+  ];
+
+  return (
+    <section className="rounded-lg border border-zinc-200 bg-white p-5">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase text-zinc-500">
+            Account workflow
+          </p>
+          <h3 className="mt-2 text-lg font-semibold text-zinc-950">
+            From noisy signals to one accountable next step
+          </h3>
+        </div>
+        <Pill tone="blue">{account.suggestedOwner}</Pill>
+      </div>
+      <div className="mt-4 grid gap-3 lg:grid-cols-4">
+        {workflow.map((step, index) => (
+          <div
+            key={step.label}
+            className={`rounded-lg border p-3 ${
+              step.active
+                ? "border-zinc-950 bg-zinc-950 text-white"
+                : "border-zinc-200 bg-zinc-50 text-zinc-900"
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <span
+                className={`grid h-6 w-6 place-items-center rounded-full text-xs font-semibold ${
+                  step.active
+                    ? "bg-white text-zinc-950"
+                    : "bg-zinc-200 text-zinc-700"
+                }`}
+              >
+                {index + 1}
+              </span>
+              <p className="font-semibold">{step.label}</p>
+            </div>
+            <p
+              className={`mt-3 text-sm leading-5 ${
+                step.active ? "text-zinc-200" : "text-zinc-600"
+              }`}
+            >
+              {step.detail}
+            </p>
+          </div>
+        ))}
+      </div>
+      <dl className="mt-4 grid gap-3 border-t border-zinc-100 pt-4 text-sm md:grid-cols-3">
+        <div>
+          <dt className="font-semibold text-zinc-900">Before</dt>
+          <dd className="mt-1 text-zinc-600">
+            90-120 minutes of manual account research across source systems.
+          </dd>
+        </div>
+        <div>
+          <dt className="font-semibold text-zinc-900">After</dt>
+          <dd className="mt-1 text-zinc-600">
+            Evidence-backed decision and downstream draft in one account plan.
+          </dd>
+        </div>
+        <div>
+          <dt className="font-semibold text-zinc-900">Account impact</dt>
+          <dd className="mt-1 text-zinc-600">{account.estimatedImpact}</dd>
+        </div>
+      </dl>
+    </section>
+  );
+}
+
+function ReadinessPanel() {
+  return (
+    <section className="rounded-lg border border-zinc-200 bg-white p-5">
+      <p className="text-xs font-semibold uppercase text-zinc-500">
+        Reliability boundary
+      </p>
+      <h2 className="mt-2 text-xl font-semibold text-zinc-950">
+        Production-shaped demo with explicit limits
+      </h2>
+      <div className="mt-4 grid gap-4 md:grid-cols-3">
+        {readinessProof.map((item) => (
+          <div key={item.label} className="rounded-lg border border-zinc-200 bg-zinc-50 p-4">
+            <p className="font-semibold text-zinc-950">{item.label}</p>
+            <p className="mt-2 text-sm leading-5 text-zinc-600">
+              {item.detail}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function ScoreBar({
   label,
   value,
@@ -259,6 +451,7 @@ function Sidebar({
           <button
             key={item}
             type="button"
+            data-testid={`nav-${item.toLowerCase().replaceAll(" ", "-")}`}
             onClick={() => setActiveView(item)}
             className={`rounded-md px-3 py-2 text-left text-sm font-semibold transition ${
               activeView === item
@@ -564,6 +757,7 @@ function AccountQueueTable({
               return (
                 <tr
                   key={account.id}
+                  data-testid={`queue-row-${account.id}`}
                   onClick={() => onOpenActionPlan(account.id)}
                   className={`cursor-pointer align-top transition ${
                     selectedAccountId === account.id
@@ -574,6 +768,7 @@ function AccountQueueTable({
                   <td className="w-14 px-4 py-4">
                     <button
                       type="button"
+                      data-testid={`open-action-plan-${account.id}`}
                       aria-label={`Open action plan for ${account.name}`}
                       title={`Open action plan for ${account.name}`}
                       onClick={(event) => {
@@ -996,6 +1191,7 @@ function RecommendationDetail({
               <button
                 key={button.status}
                 type="button"
+                data-testid={`decision-${button.label.toLowerCase()}`}
                 onClick={() => onFeedback(button.status)}
                 className={`rounded-md border px-3 py-3 text-left transition ${
                   status === button.status
@@ -1193,6 +1389,7 @@ function ActionGeneratorPanel({
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <button
               type="button"
+              data-testid="prepare-draft"
               onClick={onGenerateAction}
               disabled={isGenerating}
               className="rounded-md bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:bg-zinc-400"
@@ -1201,6 +1398,7 @@ function ActionGeneratorPanel({
             </button>
             <button
               type="button"
+              data-testid="save-draft-edits"
               onClick={onSaveAction}
               disabled={!activeAction}
               className="rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-800 shadow-sm transition hover:bg-zinc-50 disabled:cursor-not-allowed disabled:text-zinc-400"
@@ -1209,6 +1407,7 @@ function ActionGeneratorPanel({
             </button>
             <button
               type="button"
+              data-testid="create-downstream-record"
               onClick={onCreateAction}
               disabled={!activeAction}
               className="rounded-md border border-emerald-300 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800 transition hover:bg-emerald-100 disabled:cursor-not-allowed disabled:border-zinc-200 disabled:bg-zinc-50 disabled:text-zinc-400"
@@ -1301,12 +1500,13 @@ function QueueView({
 
   if (actionPlanOpen) {
     return (
-      <div className="grid gap-5">
+      <div data-testid="account-action-plan" className="grid gap-5">
         <section className="rounded-lg border border-zinc-200 bg-white p-5">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <button
                 type="button"
+                data-testid="back-to-queue"
                 onClick={onBackToQueue}
                 className="rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm font-semibold text-zinc-800 shadow-sm transition hover:bg-zinc-50"
               >
@@ -1343,6 +1543,12 @@ function QueueView({
         <AgentInsightPanel
           account={selectedAccount}
           status={selectedStatus}
+        />
+
+        <AccountWorkflowPanel
+          account={selectedAccount}
+          status={selectedStatus}
+          activeAction={activeAction}
         />
 
         <RecommendationDetail
@@ -1414,6 +1620,8 @@ function QueueView({
           tone="blue"
         />
       </div>
+
+      <ImpactMetricStrip />
 
       <FilterPanel
         filters={filters}
@@ -1757,6 +1965,8 @@ function DemoScenariosView({
         ))}
       </section>
 
+      <WedgeProofPanel />
+
       <section className="rounded-lg border border-zinc-200 bg-white p-5">
         <p className="text-xs font-semibold uppercase text-zinc-500">
           Rubric coverage
@@ -1773,6 +1983,8 @@ function DemoScenariosView({
           ))}
         </div>
       </section>
+
+      <ReadinessPanel />
     </div>
   );
 }

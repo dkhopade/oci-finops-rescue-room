@@ -18,6 +18,12 @@ OrbitIQ makes the workflow action-first:
 - Prepare customer-safe draft actions.
 - Capture feedback outcomes for future learning.
 
+The modeled MVP queue represents **$1.18M** in pipeline, renewal
+protection, and savings across three seeded accounts. The first wedge is the
+daily action queue for cloud sales and pre-sales engineering teams, replacing a
+manual 90-120 minute per-account review across spend, support, CRM, renewal,
+and public-research systems.
+
 ## Target Users
 
 - Cloud account executives
@@ -60,6 +66,16 @@ Likely buyers include sales leadership, customer success leadership, solution en
 - Created action state that proves no external system is called in demo mode.
 - Signal explorer with connector, metric, baseline, change, detected date, confidence, and linked recommendation.
 - Settings view for connector configuration and deterministic signal threshold controls.
+
+## Judge Demo Path
+
+1. Open the Action Queue and review the impact model.
+2. Open Beta Health from the queue.
+3. Review the autonomous risk/save recommendation, evidence drawer, impact estimate, and account workflow.
+4. Click Adjust to reveal Professional Override, add field context, and regenerate the draft.
+5. Prepare a draft, edit it, and create the downstream handoff in demo mode.
+6. Open Signals to filter by account, signal type, and connector.
+7. Open Settings to inspect connector configuration for CRM, Jira, cloud spend, commitment, and public research sources.
 
 ## Local Setup
 
@@ -111,13 +127,13 @@ npm run build
 
 - **Demand reality and problem severity:** specific cloud GTM workflow pain is shown in the product narrative and demo journeys.
 - **Target customer and market scope:** multiple cloud account-team roles are represented, not one isolated user.
-- **Solution fit and product design:** the first screen is the action queue, and each recommendation flows into draft actions.
-- **Technical execution and demo proof:** the app runs locally, models source-system connectors, validates seed files, and supports interactive feedback/action state.
-- **Differentiation and investment readiness:** OrbitIQ combines FinOps, RevOps, customer success, and solution engineering into a closed loop from signal detection to action outcome.
+- **Solution fit and product design:** the first screen is the action queue, and the Beta Health path shows signal triage, decision, override, draft generation, and downstream creation.
+- **Technical execution and demo proof:** the app runs locally, models source-system connectors, validates seed files, supports interactive feedback/action state, and passes lint/build.
+- **Differentiation and investment readiness:** OrbitIQ starts with the sales + pre-sales wedge and expands through a feedback loop of accepted, adjusted, created, dismissed, and converted actions.
 
 ## MVP Limitations
 
-- Mock data only.
+- Demo seed data only.
 - Local browser state only.
 - No real integrations or external writes.
 - Rule and recommendation content is deterministic for demo reliability.

@@ -323,27 +323,90 @@ export const rubricProofPoints = [
   {
     category: "Demand reality",
     proof:
-      "Cloud account teams lose hours stitching together billing, support, CRM, and public signals before deciding who needs attention.",
+      "Cloud account teams lose 90-120 minutes per account stitching together billing, support, CRM, and public signals before deciding who needs attention.",
   },
   {
     category: "Target customer",
     proof:
-      "The primary users are account executives, solution engineers, CSMs, FinOps advisors, and partner/MSP teams.",
+      "The first wedge is sales and pre-sales engineering teams that own expansion, renewal confidence, and architecture-review motions.",
   },
   {
     category: "Product fit",
     proof:
-      "The home experience is a daily action queue, not a passive cost dashboard.",
+      "The home experience is a daily action queue with a click-through account plan, evidence, decision, draft, and downstream handoff.",
   },
   {
     category: "Demo proof",
     proof:
-      "The MVP runs locally with deterministic data, three journeys, evidence, generated drafts, and workflow state.",
+      "The MVP runs locally with deterministic data, three journeys, nine source-backed signals, generated drafts, and workflow state.",
   },
   {
     category: "Investment readiness",
     proof:
-      "The differentiated loop connects signal detection, customer-safe action generation, and feedback learning.",
+      "The differentiated loop captures accepted, adjusted, created, and dismissed actions so the product can compound from workflow data.",
+  },
+];
+
+export const demoImpactMetrics = [
+  {
+    label: "Modeled queue impact",
+    value: "$1.18M",
+    detail:
+      "Pipeline, renewal protection, and savings represented by the three seeded account journeys.",
+  },
+  {
+    label: "Manual review avoided",
+    value: "90-120 min/account",
+    detail:
+      "Current account-team workflow across spend, CRM, support, renewal, and public-research systems.",
+  },
+  {
+    label: "Demo signal coverage",
+    value: "9 signals / 5 connectors",
+    detail:
+      "Cloud spend, commitment, CRM, Jira support, and public research sources are represented.",
+  },
+  {
+    label: "Initial wedge",
+    value: "Sales + pre-sales",
+    detail:
+      "Daily expansion, save, and architecture-review queue before broader CS and FinOps rollout.",
+  },
+];
+
+export const wedgeProof = [
+  {
+    label: "Smallest useful product",
+    detail:
+      "A daily account-action queue for sales and solution engineers who already own customer expansion and renewal conversations.",
+  },
+  {
+    label: "Why it wins the first workflow",
+    detail:
+      "It replaces manual account research with ranked evidence, a customer-safe decision, and a ready downstream draft.",
+  },
+  {
+    label: "Why it expands",
+    detail:
+      "Every accepted, adjusted, created, and dismissed action becomes outcome data for CSM, FinOps, partner, and leadership workflows.",
+  },
+];
+
+export const readinessProof = [
+  {
+    label: "Production-shaped",
+    detail:
+      "Typed account, signal, evidence, connector, scoring, artifact, and workflow models; deterministic seed validation; production build passes.",
+  },
+  {
+    label: "Still demo-grade",
+    detail:
+      "No authentication, live integrations, external writes, durable database, or learned model loop is enabled in this hackathon MVP.",
+  },
+  {
+    label: "Next hardening path",
+    detail:
+      "Add tenant auth, connector OAuth, database persistence, evaluation traces, audit logging, and approval-gated writes to CRM/Jira/Slack.",
   },
 ];
 
