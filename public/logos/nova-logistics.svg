@@ -1,0 +1,9 @@
+<svg width="240" height="84" viewBox="0 0 240 84" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Nova Logistics logo</title>
+  <rect width="240" height="84" rx="14" fill="#ffffff"/>
+  <rect x="12" y="12" width="60" height="60" rx="12" fill="#7c3aed"/>
+  <path d="M26 55V29H35L49 43V29H58V55H49L35 41V55H26Z" fill="#ffffff"/>
+  <path d="M91 30H101L112 45V30H121V61H112L101 46V61H91V30Z" fill="#111827"/>
+  <path d="M128 46C128 36 135 29 145 29C155 29 162 36 162 46C162 56 155 62 145 62C135 62 128 56 128 46ZM138 46C138 51 141 54 145 54C149 54 152 51 152 46C152 41 149 37 145 37C141 37 138 41 138 46Z" fill="#111827"/>
+  <text x="91" y="72" fill="#475569" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2">NOVA LOGISTICS</text>
+</svg>

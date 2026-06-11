@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "OCI FinOps Rescue Room",
+  title: "OrbitIQ",
   description:
-    "Turn rough OCI cost and resource signals into a customer-ready optimization plan.",
+    "Turn cloud consumption, customer health, and market signals into prioritized account-growth actions.",
 };
 
 export default function RootLayout({

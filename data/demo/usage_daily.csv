@@ -1,0 +1,8 @@
+account_name,usage_date,service,usage_quantity,usage_unit,spend_amount
+Acme Retail,2026-05-01,Object Storage,120,TB,18000
+Acme Retail,2026-05-31,Object Storage,166,TB,24840
+Acme Retail,2026-05-31,GPU Compute,420,GPU-hours,12600
+Acme Retail,2026-05-31,Data Transfer,87,TB,8700
+Beta Health,2026-05-01,Compute,12000,vCPU-hours,36000
+Beta Health,2026-05-31,Compute,15600,vCPU-hours,47160
+Beta Health,2026-05-31,Database,48,instances,28800

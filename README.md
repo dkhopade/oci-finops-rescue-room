@@ -1,77 +1,67 @@
-# OCI FinOps Rescue Room
+# OrbitIQ
 
-## One-Line Pitch
+OrbitIQ turns cloud consumption, customer health, and market research signals into prioritized account-growth actions.
 
-OCI FinOps Rescue Room turns rough OCI resource and cost signals into an executive-ready cost optimization plan in under 60 seconds.
+The MVP is built as a deterministic investor demo. It does not connect to real billing, CRM, support, Slack, Jira, Teams, or email systems. Every generated artifact is an editable draft or demo-mode created record.
 
-## Demo URL
+## Why This Exists
 
-- Demo URL: [https://oci-finops-rescue-room.vercel.app/](https://oci-finops-rescue-room.vercel.app/)
-- GitHub Repo: [dkhopade/oci-finops-rescue-room](https://github.com/dkhopade/oci-finops-rescue-room)
+Cloud account teams waste hours stitching together usage exports, spend trends, support tickets, CRM notes, renewal dates, and public account research. The current workflow is slow, inconsistent, and easy to miss until expansion or retention timing has already passed.
 
-## Problem Statement
+OrbitIQ makes the workflow action-first:
 
-OCI account teams often discover cost optimization signals during planning or discovery calls: idle compute, unattached storage, missing lifecycle policies, non-production sprawl, missing cost center tags, and public exposure risk. Those signals are valuable, but they are usually scattered across notes, exports, and technical conversations instead of packaged into a clear business action plan.
+- Rank accounts by urgency, impact, fit, momentum, and confidence.
+- Explain why each account is recommended today.
+- Show source-backed evidence for every recommendation.
+- Present autonomous next-best actions before manual prompting.
+- Let sales and engineering professionals add field context and regenerate the action plan.
+- Prepare customer-safe draft actions.
+- Capture feedback outcomes for future learning.
 
 ## Target Users
 
-- OCI IaaS sales reps
-- OCI sales solution architects
+- Cloud account executives
+- Solution engineers
+- Customer success managers
+- FinOps advisors
+- Partner and MSP account teams
 
-## What The App Does
+Likely buyers include sales leadership, customer success leadership, solution engineering leadership, FinOps leadership, and cloud GTM operations.
 
-The app provides a demo-ready workspace where a rep or solution architect can load a mock customer, review OCI resource signals, identify savings and governance findings, and generate a customer-facing executive brief.
+## Demo Journeys
 
-Core capabilities:
+1. **Acme Retail: existing customer growth**
+   - Object Storage spend is up 38%.
+   - GPU Compute appears for the first time.
+   - CRM notes mention a personalization initiative.
+   - The app recommends a data and AI architecture review.
 
-- Loads three demo customers with realistic OCI IaaS resource samples.
-- Runs local rule-based analysis for cost, utilization, tagging, lifecycle, attachment, environment, and exposure signals.
-- Calculates estimated monthly savings, severity, effort, confidence, and owner suggestions.
-- Shows KPI cards, grouped recommendations, a recommendation table, a simple Tailwind savings chart, and a risk vs effort view.
-- Generates an Executive Brief with top opportunities, a 30-day action plan, next meeting agenda, and concise sales follow-up email.
-- Supports copying the brief and downloading it as Markdown.
-- Includes optional CSV upload for similarly shaped mock data.
+2. **Beta Health: existing customer risk/save**
+   - Spend is up 31%.
+   - Utilization is 45%.
+   - Support tickets mention latency and cost surprise.
+   - Renewal is on 2026-08-23.
+   - The app recommends a rightsizing and renewal confidence review.
 
-## Why It Matters
+3. **Nova Logistics: greenfield discovery**
+   - Public snippets mention regional expansion, route optimization, data/platform hiring, Kubernetes, and cloud migration.
+   - The app creates a lower-confidence discovery hypothesis without implying internal usage data.
 
-For a sales team, speed matters. This MVP helps an account team move from "we noticed some cost issues" to a credible executive conversation: quantified savings, clear owners, low-effort next steps, and a professional follow-up artifact. It helps position OCI as a cloud partner focused on optimization, governance, and customer outcomes.
+## What The App Includes
 
-## Core Demo Flow
+- Left navigation with Action Queue, Accounts, Signals, Generated Actions, Demo Scenarios, and Settings.
+- Ranked account-action queue with required PRD columns.
+- Autonomous recommendation panel with top evidence, confidence, owner, and recommended next action.
+- Professional override workflow for sales, engineering, customer success, and FinOps notes.
+- Filters for account type, play type, confidence, impact, owner, region, industry, renewal window, connector, and status.
+- Sorting by priority, impact, urgency, confidence, newest signal, renewal proximity, and spend growth.
+- Account detail panel with why-now explanation, evidence drawer, score breakdown, impact estimate, action plan, simplified decision controls, and action history.
+- Action composer for customer email, internal handoff, CRM task, Jira ticket, account brief, and discovery brief.
+- Created action state that proves no external system is called in demo mode.
+- Signal explorer with connector, metric, baseline, change, detected date, confidence, and linked recommendation.
+- Settings view for connector configuration and deterministic signal threshold controls.
 
-1. Open the app and click `Load Demo Customer`.
-2. Review the selected customer's total monthly spend, estimated savings, savings percentage, finding count, and high-severity count.
-3. Switch between `RetailCo Expansion`, `HealthSys Modernization`, and `FinServ Non-Prod Sprawl` to show how findings adapt.
-4. Walk through recommendation categories, severity badges, effort badges, and technical actions.
-5. Use the savings chart and risk vs effort section to explain prioritization.
-6. Open the Executive Brief and show the customer-facing summary.
-7. Highlight the dedicated `Sales Follow-Up Email` section.
-8. Click `Copy Executive Brief` or `Download Markdown Brief`.
-9. Click `Reset Demo` to return to the landing state.
-
-## Architecture
-
-The MVP is intentionally local and lightweight.
-
-- `src/app/page.tsx`: app state, customer selection, CSV upload, copy/download handlers, and page layout.
-- `src/lib/demoData.ts`: all mock customer and OCI resource data.
-- `src/lib/analyzeFinops.ts`: local rule engine, savings calculations, formatting helpers, CSV parsing, grouping, and category savings.
-- `src/lib/generateBrief.ts`: Executive Brief and sales follow-up email generation.
-- `src/lib/types.ts`: shared TypeScript types.
-- `src/components/*`: reusable dashboard, selector, table, chart, KPI, and Executive Brief components.
-
-There is no backend service, database, authentication layer, or real OCI API integration.
-
-## Tech Stack
-
-- Next.js
-- TypeScript
-- React
-- Tailwind CSS
-- Local mock data
-- Local deterministic rule engine
-- Browser Clipboard API for copy actions
-
-## Local Setup Commands
+## Local Setup
 
 Install dependencies:
 
@@ -79,7 +69,13 @@ Install dependencies:
 npm install
 ```
 
-Start the local dev server:
+Validate the local seed dataset:
+
+```bash
+npm run seed:demo
+```
+
+Start the app:
 
 ```bash
 npm run dev
@@ -103,31 +99,26 @@ Run a production build:
 npm run build
 ```
 
-## Deployment Instructions
+## Repository Map
 
-The app is designed to deploy cleanly to Vercel as a standard Next.js project.
+- `src/app/page.tsx`: interactive MVP workspace and local workflow state.
+- `src/lib/orbitiq.ts`: typed demo account data, connector metadata, signals, evidence, scoring helpers, generated artifact templates, and formatting helpers.
+- `data/demo/*.csv`: inspectable local seed files behind the demo connector story.
+- `scripts/seed-demo.mjs`: deterministic seed-data validation command.
+- `public/logos/*.svg`: local demo account visual assets.
 
-1. Push the repository to GitHub or another Vercel-supported Git provider.
-2. Import the project into Vercel.
-3. Keep the default Next.js build settings.
-4. Use `npm run build` as the build command.
-5. Deploy.
+## Rubric Alignment
 
-No environment variables, secrets, OCI credentials, database, or authentication setup are required.
+- **Demand reality and problem severity:** specific cloud GTM workflow pain is shown in the product narrative and demo journeys.
+- **Target customer and market scope:** multiple cloud account-team roles are represented, not one isolated user.
+- **Solution fit and product design:** the first screen is the action queue, and each recommendation flows into draft actions.
+- **Technical execution and demo proof:** the app runs locally, models source-system connectors, validates seed files, and supports interactive feedback/action state.
+- **Differentiation and investment readiness:** OrbitIQ combines FinOps, RevOps, customer success, and solution engineering into a closed loop from signal detection to action outcome.
 
-## Limitations
+## MVP Limitations
 
 - Mock data only.
-- No real OCI API integration.
-- No authentication.
-- No database or persistence.
-- CSV upload is intentionally simple and expects fields similar to the mock data model.
-- Savings estimates are rule-based approximations for demo purposes, not financial commitments.
-
-## Future Enhancements
-
-1. OCI Cost Reports import
-2. Cloud Advisor recommendation import
-3. Real tenancy read-only scan
-4. CRM opportunity integration
-5. Auto-generated customer workshop deck
+- Local browser state only.
+- No real integrations or external writes.
+- Rule and recommendation content is deterministic for demo reliability.
+- Financial values are directional estimates, not forecasts or commitments.
